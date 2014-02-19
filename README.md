@@ -1,107 +1,45 @@
-# Grunt.js Skeleton #
+## iGurbani - A GurbaniDB API Sample App
 
-Get up and running with Grunt fast with the **Grunt.js Skeleton**!
+Lovingly developed in pure HTML, CSS and JavaScript, and compatible across desktop, tablet and mobile devices - this lightweight app showcases what is possible to build upon the [GurbaniDB API](https://github.com/sikher/gurbanidb)
 
-Grunt.js is a fantastic tool to automate JavaScript linting, concatenation and minification of JavaScript and CSS files.
+This app is currently __only__ compatible with __GurbaniDB Version 2.2__.
 
-This repository includes:
-* Grunt.js v0.4.1 - http://gruntjs.com/
-* QUnit v1.12.0 - http://qunitjs.com/
-* jQuery v1.10.2 - http://jquery.com/
+## Pre-requisites
+1. Access to `Terminal` or the command-line
+2. Git: http://git-scm.com/downloads
+3. Node.js: http://nodejs.org/
+4. Grunt Command Line Interface (CLI): `npm install -g grunt-cli`
 
-## Pre-requisites ##
-1. You will need to have a web server running on your machine e.g. XAMPP, Apache
-2. You will need to have access to the command-line, for Linux/Max a Terminal or on Windows it will be a command prompt (`cmd`)
-3. You will need to have git installed: http://git-scm.com/downloads
-4. You will need to have node.js installed: http://nodejs.org/
+## Installation
+1. Download this repo
+2. Navigate to the repo in `Terminal` using `cd`
+3. Run `npm install` to install all the dependencies through Node.js
+4. Run `grunt` to make sure everything is installed properly. You should see something like:
 
-## Installation ##
-_Do the following installation in the folder accessible by your local webserver at http://localhost/_
-
-Just use `git` to clone the ssh version:
-
-    git clone git@github.com:jasdeepkhalsa/gruntjs-skeleton.git
-
-**Or** use `git` to clone the https version:
-
-	git clone https://github.com/jasdeepkhalsa/gruntjs-skeleton.git
-
-**Or** download the .zip archive and unzip it to the folder `gruntjs-skeleton`:
-
-	https://github.com/jasdeepkhalsa/gruntjs-skeleton/archive/master.zip
-
-_Now you should have a folder called "gruntjs-skeleton" accessible from http://localhost/gruntjs-skeleton/_
-
-## Setup ##
-_Make sure you are in the root of your application for all the following steps, using 'cd' to navigate on the command line to your "gruntjs-skeleton" folder_
-
-### 1. Uninstall any previous versions of Grunt.js ###
-
-`npm uninstall -g grunt`
-
-### 2. Reinstall the new Grunt Command Line Interface (CLI) ###
-
-`npm install -g grunt-cli`
-
-### 3. Install the packages required by Grunt ###
-
-`npm install`
-
-## Running Grunt ##
-
-Now you can run grunt with the following command in the root of your application:
-
-`grunt`
-
-The result should be something like:
-
-	Running "jshint:files" (jshint) task
-	>> 2 files lint free.
-	
 	Running "uglify:my_target" (uglify) task
-	Source Map "js/main.min.map.js" created.
+	Source Map "js/main.min.map" created.
 	File "js/main.min.js" created.
-	
+
 	Running "cssmin:compress" (cssmin) task
 	File css/main.min.css created.
-	Uncompressed size: 1139 bytes.
-	Compressed size: 233 bytes gzipped (773 bytes minified).
-	
+	Uncompressed size: 136603 bytes.
+	Compressed size: 14984 bytes gzipped (113536 bytes minified).
+
 	Done, without errors.
 
-For only running `qunit` unit tests and `jshint` use the following command:
+5. Finally, please modify `config.json` to have the correct API endpoint. To use the official GurbaniDB API change this to the following (with a trailing slash /):
 
-`grunt test`
+	{"api":"http://api.sikher.com/"}
 
-The result should be something like:
+6. Now each time you add or modify the css or js files, please remember to:
+	* Update your `Gruntfile.js` with the correct `files` under `uglify`
+	* Run `grunt` to update your files
+	* Hard refresh your browser to see the changes and to avoid caching issues with Ctrl+Shift+R (Windows/Linux) or ⌘+Shift+R (Mac)
 
-	Running "jshint:files" (jshint) task
-	>> 2 files lint free.
-	
-	Running "qunit:all" (qunit) task
-	Testing http://localhost/gruntjs-skeleton/tests/index.html .OK
-	>> 1 assertions passed (17ms)
-	
-	Done, without errors.
-	
-_If QUnit fails, please ensure your local server (most likely Apache) is running and that the URL http://localhost/gruntjs-skeleton/tests/index.html is accessible from your browser_
+__Please Note:__ If you are planning to use this code locally then you may need to setup a local server otherwise the code may fail due to restrictions in the Same Origin Policy in some browsers when using `file:///`
 
-Please note a few things:
-* `jshint` can cause a lot of issues, I would recommend using it only on JavaScript files you yourself have created and want to test. In which case you can update the jshint `files:` array.
-* `uglify` has a lot of options so please check the full list here: https://github.com/gruntjs/grunt-contrib-uglify
-* `qunit` requires some setup so you can remove it for now if you're not interested in unit testing. If you are, read more documentation here: https://npmjs.org/package/grunt-contrib-qunit.
-* Full documentation is available on the Grunt website here: http://gruntjs.com/getting-started
-* Detailed information on upgrading from Grunt 0.3.x to Grunt 0.4.x is available here: http://gruntjs.com/upgrading-from-0.3-to-0.4
-
-## Change logs ##
-* 0.0.4 - Removed concat plugin and used uglify's built-in concat functionality instead. Added JavaScript sourcemap support and an index.html file based on HTML5 Boilerplate for testing JavaScript/jQuery. Upgraded to the latest jQuery v1.10.2 & QUnit v1.12.0 libraries.
-* 0.0.3 - Fixed bug of CSS minification not working for multiple CSS files and throwing error "Warning: Object #<Object> has no method 'expandFiles'". Updated CSS plugin from mincss to cssmin and to version 0.4.0.
-* 0.0.2 - Fixed bug of no minification of JavaScript files. Now using Uglify plugin for minification. Added css reset by Eric Meyer so that Grunt minifies the css rather than throwing errors. Updated documentation.
-* 0.0.1 - Initial commit
-
-## Author & Version ##
-v0.0.4 by Jasdeep Khalsa
-
-## Contact ##
-* Email: jasdeep {at} simplyspiritdesign {dot} com
-* Twitter: [@JasdeepKhalsa1](http://twitter.com/@JasdeepKhalsa1)
+## To Do
+- Simple functions that work across all endpoints - need to add view hymn and page
+- When hovering over an author/melody, a popup dialog gives the description
+- Currently only the first 10 results are returned, can also have pagination for results
+- Add a way to update any local data if the version of the API changes (should happen in config)

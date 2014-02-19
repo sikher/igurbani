@@ -1,21 +1,186 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>iGurbani - A GurbaniDB API Sample App</title>
+    <meta name="description" content="Lovingly developed in pure HTML, CSS and JavaScript, and compatible across desktop, tablet and mobile devices - this lightweight app showcases what is possible to build upon the GurbaniDB API">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="css/main.min.css">
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+    <link rel="stylesheet" href="css/main.min.css">
+</head>
+<body>
 
-        <p>Hello world! This is (an adapted) HTML5 Boilerplate.</p>
+<!--[if lte IE 8]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
 
-        <script src="js/main.min.js"></script>
-    </body>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<div class="container">
+    <!-- Static navbar -->
+    <div class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">iGurbani</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="search-advanced-btn">Advanced Search</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+    </div>
+
+    <div class="form-horizontal" role="form">
+        <div class="form-group">
+            <div class="col-sm-12">
+                <input type="text" class="search-text form-control" tabindex="1" placeholder="Search"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <button type="button" class="search-btn btn btn-default btn-lg btn-block" tabindex="2">Search</button>
+            </div>
+        </div>
+        <div class="search-advanced">
+            <div class="form-group">
+                <label class="col-sm-2">Search Type</label>
+                <div class="col-sm-10">
+                    <select class="search-type form-control" tabindex="3">
+                        <option value="0">Scripture by First Letters (Start)</option>
+                        <option value="1">Scripture by First Letters (Anywhere)</option>
+                        <option value="2">Scripture by Words (Anywhere)</option>
+                        <option value="3">Translation by Words (Anywhere)</option>
+                        <option value="4">Transliteration by Words (Anywhere)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2">Translation</label>
+                <div class="col-sm-10">
+                    <select class="search-translation form-control" tabindex="4">
+                        <option value="13">English</option>
+                        <option value="1">Afrikaans</option>
+                        <option value="2">Albanian</option>
+                        <option value="3">Arabic</option>
+                        <option value="4">Belarusian</option>
+                        <option value="5">Bulgarian</option>
+                        <option value="6">Catalan</option>
+                        <option value="7">Chinese Simplified</option>
+                        <option value="8">Chinese Traditional</option>
+                        <option value="9">Croatian</option>
+                        <option value="10">Czech</option>
+                        <option value="11">Danish</option>
+                        <option value="12">Dutch</option>
+                        <option value="13">English</option>
+                        <option value="14">Estonian</option>
+                        <option value="15">Filipino</option>
+                        <option value="16">Finnish</option>
+                        <option value="17">French</option>
+                        <option value="18">Galician</option>
+                        <option value="19">German</option>
+                        <option value="20">Greek</option>
+                        <option value="21">Haitian Creole</option>
+                        <option value="22">Hebrew</option>
+                        <option value="23">Hindi</option>
+                        <option value="24">Hungarian</option>
+                        <option value="25">Icelandic</option>
+                        <option value="26">Indonesian</option>
+                        <option value="27">Irish</option>
+                        <option value="28">Italian</option>
+                        <option value="29">Japanese</option>
+                        <option value="30">Korean</option>
+                        <option value="31">Latvian</option>
+                        <option value="32">Lithuanian</option>
+                        <option value="33">Macedonian</option>
+                        <option value="34">Malay</option>
+                        <option value="35">Maltese</option>
+                        <option value="36">Norwegian</option>
+                        <option value="37">Persian</option>
+                        <option value="38">Polish</option>
+                        <option value="39">Portuguese</option>
+                        <option value="40">Romanian</option>
+                        <option value="41">Russian</option>
+                        <option value="42">Serbian</option>
+                        <option value="43">Slovak</option>
+                        <option value="44">Slovenian</option>
+                        <option value="45">Spanish</option>
+                        <option value="46">Swahili</option>
+                        <option value="47">Swedish</option>
+                        <option value="48">Thai</option>
+                        <option value="49">Turkish</option>
+                        <option value="50">Ukrainian</option>
+                        <option value="51">Vietnamese</option>
+                        <option value="52">Welsh</option>
+                        <option value="53">Yiddish</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2">Transliteration</label>
+                <div class="col-sm-10">
+                    <select class="search-transliteration form-control" tabindex="5">
+                        <option value="69">Latin</option>
+                        <option value="55">Arabic</option>
+                        <option value="56">Armenian</option>
+                        <option value="57">Bengali</option>
+                        <option value="58">Cyrillic</option>
+                        <option value="59">Devanagari</option>
+                        <option value="60">Georgian</option>
+                        <option value="61">Greek</option>
+                        <option value="62">Gujarati</option>
+                        <option value="63">Hangul</option>
+                        <option value="64">Hebrew</option>
+                        <option value="65">Hiragana</option>
+                        <option value="66">Jamo</option>
+                        <option value="67">Kannada</option>
+                        <option value="68">Katakana</option>
+                        <option value="69">Latin</option>
+                        <option value="70">Malayalam</option>
+                        <option value="71">Oryia</option>
+                        <option value="72">Syriac</option>
+                        <option value="73">Tamil</option>
+                        <option value="74">Telugu</option>
+                        <option value="75">Thaana</option>
+                        <option value="76">Thai</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status Messages -->
+    <div id="spinner"></div>
+
+    <div class="error-message"></div>
+
+    <div class="results-header"></div>
+
+    <!-- Search Results -->
+    <div class="results-content">
+    </div>
+
+    <div class="view-page">
+    </div>
+
+    <div class="view-hymn">
+    </div>
+</div>
+
+<script src="js/main.min.js"></script>
+</body>
 </html>

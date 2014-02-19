@@ -38,14 +38,14 @@ module.exports = function(grunt) {
 					sourceMap: 'js/main.min.map'
 				},
 				files : {
-					'js/main.min.js' : ['js/jquery-1.10.2.min.js', 'js/main.js']
+					'js/main.min.js' : ['js/jquery-1.10.2.min.js', 'js/bootstrap.js', 'js/spin.js', 'js/main.js']
 				}
 			}
 		},
 		cssmin : {
 			compress : {
 				files : {
-					"css/main.min.css" : ['css/main.css']
+					"css/main.min.css" : ['css/bootstrap.css', 'css/bootstrap-theme.css', 'css/main.css']
 				}
 			}
 		}
@@ -58,5 +58,5 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
 	grunt.registerTask('test', ['jshint', 'qunit']);
-	grunt.registerTask('default', ['jshint', 'uglify', 'cssmin']);
+	grunt.registerTask('default', ['uglify', 'cssmin']);
 };
