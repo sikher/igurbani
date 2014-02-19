@@ -4,6 +4,9 @@ Lovingly developed in pure HTML, CSS and JavaScript, and compatible across deskt
 
 This app is currently __only__ compatible with __GurbaniDB Version 2.2__.
 
+## Demo
+Please view the latest demo at http://sikher.github.io/gurbanidb-sample-app/
+
 ## Pre-requisites
 1. Access to `Terminal` or the command-line
 2. Git: http://git-scm.com/downloads
