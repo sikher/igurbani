@@ -27,7 +27,7 @@ This app is currently __only__ compatible with __GurbaniDB Version 2.2__.
 
 		Done, without errors.
 
-5. Finally, please modify `config.json` to have the correct API endpoint. To use the official GurbaniDB API change this to the following (with a trailing slash /):
+5. Finally, please modify `config.json` to have the correct API endpoint. To use the official GurbaniDB API you should leave it as the default (with a trailing slash /):
 
 		{"api":"http://api.sikher.com/"}
 
