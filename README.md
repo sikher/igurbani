@@ -16,20 +16,20 @@ This app is currently __only__ compatible with __GurbaniDB Version 2.2__.
 3. Run `npm install` to install all the dependencies through Node.js
 4. Run `grunt` to make sure everything is installed properly. You should see something like:
 
-	Running "uglify:my_target" (uglify) task
-	Source Map "js/main.min.map" created.
-	File "js/main.min.js" created.
+		Running "uglify:my_target" (uglify) task
+		Source Map "js/main.min.map" created.
+		File "js/main.min.js" created.
 
-	Running "cssmin:compress" (cssmin) task
-	File css/main.min.css created.
-	Uncompressed size: 136603 bytes.
-	Compressed size: 14984 bytes gzipped (113536 bytes minified).
+		Running "cssmin:compress" (cssmin) task
+		File css/main.min.css created.
+		Uncompressed size: 136603 bytes.
+		Compressed size: 14984 bytes gzipped (113536 bytes minified).
 
-	Done, without errors.
+		Done, without errors.
 
 5. Finally, please modify `config.json` to have the correct API endpoint. To use the official GurbaniDB API change this to the following (with a trailing slash /):
 
-	{"api":"http://api.sikher.com/"}
+		{"api":"http://api.sikher.com/"}
 
 6. Now each time you add or modify the css or js files, please remember to:
 	* Update your `Gruntfile.js` with the correct `files` under `uglify`
