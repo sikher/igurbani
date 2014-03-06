@@ -43,6 +43,8 @@ __Please Note:__ If you are planning to use this code locally then you may need 
 
 ## To Do
 - Simple functions that work across all endpoints - need to add view hymn and page
+- When pressing enter, the search happens (common user experience)
+- For mobile the VKI keyboard resizes
 - When hovering over an author/melody, a popup dialog gives the description
 - Currently only the first 10 results are returned, can also have pagination for results
 - Add a way to update any local data if the version of the API changes (should happen in config)

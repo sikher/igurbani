@@ -41,8 +41,6 @@ $(document).ready(function(){
 		api  = data.api;
 	});
 
-	search_text.focus(); // Set the focus to the search text field
-
 	// Main Functions
 
 	function getSearchOptions()
