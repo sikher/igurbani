@@ -4,7 +4,9 @@ $(document).ready(function(){
 
 	var api = '',
 	output = '',
+	hymn_output = '',
 	results = {},
+	hymns = {},
 	search_text = $('.search-text'),
 	search_btn = $('.search-btn'),
 	search_advanced = $('.search-advanced'),
@@ -12,8 +14,11 @@ $(document).ready(function(){
 	search_type = $('.search-type'),
 	search_translation = $('.search-translation'),
 	search_transliteration = $('.search-transliteration'),
+	results_wrapper = function() { return $('.result'); },
 	results_header = $('.results-header'),
 	results_content = $('.results-content'),
+	hymn_view = $('.view-hymn'),
+	hymn_back_btn = $('.hymn-back'),
 	error_message = $('.error-message'),
 	spinjs_options = {
 		lines: 9, // The number of lines to draw
@@ -100,6 +105,7 @@ $(document).ready(function(){
 		saveData(data);
 		createSearchResultsHTML();
 		showSearchResults();
+		console.log(results);
 	}
 
 	function createSearchResultsHTML()
@@ -118,7 +124,8 @@ $(document).ready(function(){
 			for(var result in results['data'])
 			{
 				var line = results['data'][result];
-				output += '<ul class="result">';
+				var hymn = line['hymn'];
+				output += '<ul class="result"'+' data-hymn="'+hymn+'">';
 				output += '<li class="scripture">' + line['text'] + '</li>';
 				output += '<li class="translation">' + line['translation']['text'] + '</li>';
 				output += '<li class="transliteration">' + line['transliteration']['text'] + '</li>';
@@ -135,7 +142,8 @@ $(document).ready(function(){
 			for(var result in results['data'])
 			{
 				var line = results['data'][result];
-				output += '<ul class="result">';
+				var hymn = line['hymn'];
+				output += '<ul class="result"'+' data-hymn="'+hymn+'">';
 				output += '<li class="scripture">' + line['scripture']['text'] + '</li>';
 				output += '<li class="translation">' + line['text'] + '</li>';
 				output += '<li class="transliteration">' + line['transliteration']['text'] + '</li>';
@@ -152,7 +160,8 @@ $(document).ready(function(){
 			for(var result in results['data'])
 			{
 				var line = results['data'][result];
-				output += '<ul class="result">';
+				var hymn = line['hymn'];
+				output += '<ul class="result"'+' data-hymn="'+hymn+'">';	
 				output += '<li class="scripture">' + line['scripture']['text'] + '</li>';
 				output += '<li class="translation">' + line['translation']['text'] + '</li>';
 				output += '<li class="transliteration">' + line['text'] + '</li>';
@@ -173,7 +182,41 @@ $(document).ready(function(){
 
 	function showSearchResults()
 	{
-		return results_content.html(output);
+		results_content.html(output);
+		results_wrapper().on('click',getHymn);
+	}
+
+	function getHymn()
+	{
+		var hymn = $(this).attr('data-hymn');
+		getData('hymn/',[hymn],showHymn);
+	}
+
+	function showHymn(data)
+	{
+		spinner.stop();
+		error_message.hide();
+		error_message.html('');
+		var hymn_id = data[0].hymn;
+		hymns[hymn_id] = data;
+		hymn_output = '';
+		for(var line_num in hymns[hymn_id])
+		{
+			var line = hymns[hymn_id][line_num];
+			hymn_output += '<ul class="line"'+' data-hymn="'+line['hymn']+'">';
+			hymn_output += '<li class="scripture">' + line['text'] + '</li>';
+			hymn_output += '<li class="translation">' + line['translation']['text'] + '</li>';
+			hymn_output += '<li class="transliteration">' + line['transliteration']['text'] + '</li>';
+			hymn_output += '<li class="melody">' + line['melody']['melody'] + '</li>';
+			hymn_output += '<li class="author">' + line['author']['author'] + '</li>';
+			hymn_output += '</ul>';
+		}
+
+		hymn_view.html(hymn_output);
+		results_content.hide();
+		results_header.hide();
+		hymn_view.fadeIn();
+		hymn_back_btn.show();
 	}
 
 	function showError()
@@ -187,9 +230,17 @@ $(document).ready(function(){
 		error_message.show();
 	}
 
+	function hideHymnShowResults()
+	{
+		hymn_back_btn.hide();
+		hymn_view.fadeOut();
+		results_header.show();
+		results_content.show();
+	}
+
 	// Events
 
 	search_btn.on('click',getSearchOptions);
 	search_advanced_btn.on('click',toggleAdvancedSearch);
-
+	hymn_back_btn.on('click',hideHymnShowResults);
 });

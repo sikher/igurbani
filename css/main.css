@@ -16,16 +16,17 @@
 	background-color: #f4f8fa;
 }
 
-.result {
+.result, .line {
 	padding: 10px;
 	list-style-type: none;
 	border-radius: 10px;
+	cursor: pointer;
 }
 
-.result:hover {
+.result:hover, .line:hover {
 	background-color: #f5f5f5;
 }
 
-.melody, .author, .error-message, .results-header, .search-advanced {
+.melody, .author, .error-message, .results-header, .search-advanced, .hymn-back {
 	display: none;
 }
