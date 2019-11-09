@@ -5,7 +5,7 @@ Lovingly developed in pure HTML, CSS and JavaScript, and compatible across deskt
 This app is currently __only__ compatible with __GurbaniDB Version 2.2__.
 
 ## Demo
-Please view the latest demo at http://sikher.github.io/igurbani/
+Please view the latest demo at https://sikher.github.io/igurbani/
 
 ## Pre-requisites
 1. Access to `Terminal` or the command-line
@@ -32,7 +32,7 @@ Please view the latest demo at http://sikher.github.io/igurbani/
 
 5. Finally, please modify `config.json` to have the correct API endpoint. To use the official GurbaniDB API you should leave it as the default (with a trailing slash /):
 
-		{"api":"http://api.sikher.com/"}
+		{"api":"https://api.sikher.com/"}
 
 6. Now each time you add or modify the css or js files, please remember to:
 	* Update your `Gruntfile.js` with the correct `files` under `uglify`
