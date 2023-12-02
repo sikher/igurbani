@@ -6,11 +6,16 @@ name: Build & Deploy to GitHub Pages
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push events but only for the master branch
-  push:\
+  push:
     branches: [master]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+
+# Set some defaults, like the shell to use for execution
+defaults:
+  run:
+    shell: bash
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -23,18 +28,49 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      # Check-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          path: master
 
-      # Installs Node.js and NPM
+      - name: Checkout gh-pages
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages
+          token: ${{ github.token }}
+      # Install Node.js and NPM
       - name: Use Node.js 16
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: 'npm'
-      # Installs the app
-      - run: npm ci
-      # Builds the app
-      - run: npm run build
-      # Deploys the app
-      - run: npm run deploy:gh-pages -- ${{ secrets.GITHUB_TOKEN }} ${{ github.repository }}
+      # Enter master directory, install & build app
+      - run: |
+          cd $GITHUB_WORKSPACE/master
+          npm ci
+          npm run build
+      # Empty gh-pages directory
+      - run: |
+          shopt -s extglob
+          cd $GITHUB_WORKSPACE/gh-pages
+          echo ls
+          # Leave the .git directory intact
+          rm -rf !(*.git*)
+      # Copy dist contents to gh-pages directory
+      - run: |
+          cp $GITHUB_WORKSPACE/master/README.md $GITHUB_WORKSPACE/gh-pages/
+          cp -fRuv $GITHUB_WORKSPACE/master/dist/* $GITHUB_WORKSPACE/gh-pages/
+      # Enter gh-pages directory & deploy the app to gh-pages
+      - run: |
+          cd $GITHUB_WORKSPACE/gh-pages
+          # set some same Git defaults
+          git config --global user.email "bot@sikher.com"
+          git config --global user.name "Sikher Bot"
+          # lets start adding the build files
+          git add --all
+          git commit -m "Updating the gh-pages branch"
+          # always force push the latest version of the code
+          git push origin gh-pages --force-with-lease
+          echo "Successfully deployed the app"

@@ -13,7 +13,7 @@
   /* Browser global */
   else root.Spinner = factory()
 }
-(this, function() {
+(window, function() {
   "use strict";
 
   var prefixes = ['webkit', 'Moz', 'ms', 'O'] /* Vendor prefixes */
