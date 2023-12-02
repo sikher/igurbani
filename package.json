@@ -1,15 +1,13 @@
 {
   "name": "gurbanidb-sample-app",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-contrib-cssmin": "~0.4.0",
-    "grunt-contrib-jshint": "~0.5.2",
-    "grunt-contrib-watch": "~0.4.3",
-    "grunt-contrib-qunit": "~0.2.1",
-    "grunt-contrib-uglify": "~0.2.0"
+    "vite": "^5.0.4"
   },
   "scripts": {
-  	"test":"grunt test"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 3000",
+    "deploy:gh-pages": "./scripts/deploy.sh"
   }
 }
