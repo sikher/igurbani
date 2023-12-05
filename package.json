@@ -2,7 +2,7 @@
   "name": "gurbanidb-sample-app",
   "version": "0.0.2",
   "devDependencies": {
-    "vite": "^5.0.4"
+    "vite": "^5.0.5"
   },
   "scripts": {
     "dev": "vite",
