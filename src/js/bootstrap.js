@@ -4,7 +4,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
-if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript requires jQuery') }
+if (typeof jQuery === 'undefined' || typeof $ === 'undefined') { throw new Error('Bootstrap\'s JavaScript requires jQuery') }
 
 /* ========================================================================
  * Bootstrap: transition.js v3.1.1
@@ -53,7 +53,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     $.support.transition = transitionEnd()
   })
 
-}(jQuery);
+}(jQuery || $);
 
 /* ========================================================================
  * Bootstrap: alert.js v3.1.1
@@ -142,7 +142,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
   $(document).on('click.bs.alert.data-api', dismiss, Alert.prototype.close)
 
-}(jQuery);
+}(jQuery || $);
 
 /* ========================================================================
  * Bootstrap: button.js v3.1.1
@@ -250,7 +250,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     e.preventDefault()
   })
 
-}(jQuery);
+}(jQuery || $);
 
 /* ========================================================================
  * Bootstrap: carousel.js v3.1.1
@@ -456,7 +456,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     })
   })
 
-}(jQuery);
+}(jQuery || $);
 
 /* ========================================================================
  * Bootstrap: collapse.js v3.1.1
@@ -627,7 +627,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     $target.collapse(option)
   })
 
-}(jQuery);
+}(jQuery || $);
 
 /* ========================================================================
  * Bootstrap: dropdown.js v3.1.1
@@ -775,7 +775,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     .on('click.bs.dropdown.data-api', toggle, Dropdown.prototype.toggle)
     .on('keydown.bs.dropdown.data-api', toggle + ', [role=menu], [role=listbox]', Dropdown.prototype.keydown)
 
-}(jQuery);
+}(jQuery || $);
 
 /* ========================================================================
  * Bootstrap: modal.js v3.1.1
@@ -1019,7 +1019,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     .on('show.bs.modal', '.modal', function () { $(document.body).addClass('modal-open') })
     .on('hidden.bs.modal', '.modal', function () { $(document.body).removeClass('modal-open') })
 
-}(jQuery);
+}(jQuery || $);
 
 /* ========================================================================
  * Bootstrap: tooltip.js v3.1.1
@@ -1419,7 +1419,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     return this
   }
 
-}(jQuery);
+}(jQuery || $);
 
 /* ========================================================================
  * Bootstrap: popover.js v3.1.1
@@ -1530,7 +1530,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     return this
   }
 
-}(jQuery);
+}(jQuery || $);
 
 /* ========================================================================
  * Bootstrap: scrollspy.js v3.1.1
@@ -1684,7 +1684,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     })
   })
 
-}(jQuery);
+}(jQuery || $);
 
 /* ========================================================================
  * Bootstrap: tab.js v3.1.1
@@ -1810,7 +1810,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     $(this).tab('show')
   })
 
-}(jQuery);
+}(jQuery || $);
 
 /* ========================================================================
  * Bootstrap: affix.js v3.1.1
@@ -1948,4 +1948,4 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     })
   })
 
-}(jQuery);
+}(jQuery || $);
