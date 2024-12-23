@@ -31,7 +31,7 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed
     environment:
-      name: production
+      name: gh-pages
       url: ${{ steps.deploy_to_pages.outputs.github_pages_url }}
 
     steps:
