@@ -1,21 +1,26 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
-name: Build & Deploy to GitHub Pages
+name: Vite Github Pages Deploy
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push events but only for the master branch
+  # Runs on pushes targeting the default branch
   push:
-    branches: [master]
-
+    # Runs on pushes targeting all branches
+    push:
+      branches: ["*"]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Set some defaults, like the shell to use for execution
-defaults:
-  run:
-    shell: bash
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -23,54 +28,22 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    # Timeout minutes are required
-    timeout-minutes: 5
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    # Steps represent a sequence of tasks that will be executed
+    environment:
+      name: production
+      url: ${{ steps.deploy_to_pages.outputs.github_pages_url }}
+
     steps:
-      # Check-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Checkout branch
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout
         uses: actions/checkout@v4
-        with:
-          ref: master
-          path: master
-
-      - name: Checkout gh-pages
-        uses: actions/checkout@v4
-        with:
-          ref: gh-pages
-          path: gh-pages
-          token: ${{ github.token }}
       # Install Node.js and NPM
-      - name: Use Node.js 16
+      - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
-      # Enter master directory, install & build app
-      - run: |
-          cd $GITHUB_WORKSPACE/master
-          npm ci
-          npm run build
-      # Empty gh-pages directory
-      - run: |
-          shopt -s extglob
-          cd $GITHUB_WORKSPACE/gh-pages
-          echo ls
-          # Leave the .git directory intact
-          rm -rf !(*.git*)
-      # Copy dist contents to gh-pages directory
-      - run: |
-          cp $GITHUB_WORKSPACE/master/README.md $GITHUB_WORKSPACE/gh-pages/
-          cp -fRuv $GITHUB_WORKSPACE/master/dist/* $GITHUB_WORKSPACE/gh-pages/
-      # Enter gh-pages directory & deploy the app to gh-pages
-      - run: |
-          cd $GITHUB_WORKSPACE/gh-pages
-          # set some same Git defaults
-          git config --global user.email "bot@sikher.com"
-          git config --global user.name "Sikher Bot"
-          # lets start adding the build files
-          git add --all
-          git commit -m "Updating the gh-pages branch"
-          # always force push the latest version of the code
-          git push origin gh-pages --force-with-lease
-          echo "Successfully deployed the app"
+          node-version: 22
+      # Deploy to Github Pages
+      - name: Vite Github Pages Deployer
+        uses: skywarth/vite-github-pages-deployer@master
+        id: deploy_to_pages
