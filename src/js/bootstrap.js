@@ -1,5 +1,3 @@
-import $ from './jquery-2.2.4.js';
-
 /*!
  * Bootstrap v3.1.1 (http://getbootstrap.com)
  * Copyright 2011-2014 Twitter, Inc.
